@@ -6,25 +6,22 @@ Die Website unterstützt bei der Auswahl eines passenden Agenten für die nächs
 
 ## Struktur
 
-- `index.html` – Anwendungsshell und semantische Oberfläche
+- `index.html` – Anwendungsshell, Startseite, Filter und Änderungsprotokoll
 - `css/styles.css` – ABG-konformes, responsives Styling
-- `js/app.js` – Suche, Filter, Aufgabenwahl, Detailansichten, URL-Profile und Zustände
+- `js/app.js` – Suche, Aufgabenwahl, dedizierte Filter, Detailansichten, URL-Profile und Zustände
 - `data/agents.json` – einzige redaktionelle Datenquelle
-- `scripts/validate.mjs` – lokale Struktur- und Datenprüfung
+- `data/prompts/*.txt` – öffentliche, bereinigte Promptfassungen
+- `assets/` – öffentliche Dashboard-Assets, einschließlich ABG-Logo
 
 ## Lokale Prüfung
 
-Die Seite nutzt `fetch('data/agents.json')`. Für die lokale Prüfung deshalb einen kleinen HTTP-Server verwenden, zum Beispiel:
+Die Seite nutzt `fetch('data/agents.json')` und die öffentlichen Promptdateien. Für die lokale Prüfung deshalb einen kleinen HTTP-Server verwenden:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Danach `http://localhost:8000/` öffnen und den Validator ausführen:
-
-```bash
-node scripts/validate.mjs
-```
+Danach `http://localhost:8000/` öffnen. Zu prüfen sind insbesondere Datenladung, Suche, Aufgabenwahl, Fachbereichs-, Status-, Modell-, Integrations- und Skillfilter, URL-Profile, Prompt-Laden, Kopierfunktion, Desktop-/Mobile-Darstellung sowie Fehlerzustände.
 
 ## Datenregeln
 
@@ -46,6 +43,8 @@ Wenn die Bibliothek ausschließlich intern gedacht ist, ist eine öffentliche Gi
 
 1. Änderungen ausschließlich in `data/agents.json` redaktionell pflegen.
 2. Nicht bestätigte Angaben nicht ergänzen, sondern klar kennzeichnen.
-3. `node scripts/validate.mjs` ausführen.
-4. Desktop, Mobile, Tastaturbedienung, Suche, Filter, URL-Profile und Fehlerzustände prüfen.
-5. Erst nach bestandener Prüfung veröffentlichen.
+3. Promptdateien nur aus freigegebenen, bereinigten Quellen aktualisieren.
+4. Desktop, Mobile, Tastaturbedienung, Suche, alle Filter, URL-Profile und Fehlerzustände prüfen.
+5. Nach jeder Veröffentlichung die Katalogdateien, Promptpfade und Datenschutzmuster erneut prüfen.
+6. Erst nach bestandener Prüfung veröffentlichen.
+
